@@ -1,0 +1,61 @@
+services:
+
+  api:
+    build:
+      context: ./blog-professores-api
+
+    container_name: blog-professores-api
+
+    ports:
+      - "3000:3000"
+
+    env_file:
+      - ./blog-professores-api/.env
+
+    depends_on:
+      - mongodb
+
+    volumes:
+      - ./blog-professores-api:/app
+      - api_node_modules:/app/node_modules
+
+    command: npm run dev
+
+  mongodb:
+    image: mongo:8.0
+
+    container_name: blog-professores-mongodb
+
+    restart: always
+
+    ports:
+      - "27017:27017"
+
+    environment:
+      MONGO_INITDB_DATABASE: blog_professores
+
+    volumes:
+      - mongodb_data:/data/db
+
+  frontend:
+    build:
+      context: ./blog-professores-front
+
+    container_name: blog-professores-front
+
+    ports:
+      - "5173:5173"
+
+    volumes:
+      - ./blog-professores-front:/app
+      - front_node_modules:/app/node_modules
+
+    depends_on:
+      - api
+
+    command: npm run dev -- --host 0.0.0.0
+
+volumes:
+  mongodb_data:
+  api_node_modules:
+  front_node_modules:

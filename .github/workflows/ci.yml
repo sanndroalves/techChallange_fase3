@@ -1,0 +1,76 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+
+  frontend:
+    name: Frontend - Lint e Build
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: blog-professores-front
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: blog-professores-front/package-lock.json
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Executar Lint
+        run: npm run lint
+
+      - name: Executar Build
+        run: npm run build
+
+  backend:
+    name: Backend - Testes
+    runs-on: ubuntu-latest
+
+    services:
+      mongodb:
+        image: mongo:8.0
+        ports:
+          - 27017:27017
+
+    defaults:
+      run:
+        working-directory: blog-professores-api
+
+    env:
+      MONGO_URI: mongodb://localhost:27017/blog_professores
+      JWT_SECRET: teste-ci
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Executar testes
+        run: npm test
+  
