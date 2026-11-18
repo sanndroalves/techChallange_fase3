@@ -3,7 +3,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage"
 
 const AuthContext = createContext()
 
-// no mobile nao tem localStorage, entao usei o AsyncStorage
 export function AuthProvider({ children }) {
     const [token, setToken] = useState(null)
     const [usuario, setUsuario] = useState(null)

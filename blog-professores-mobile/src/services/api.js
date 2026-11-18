@@ -1,6 +1,3 @@
-// No emulador Android o "localhost" do computador e o 10.0.2.2
-// Se for testar no celular (Expo Go), coloca o IP da sua maquina no .env
-// ex: EXPO_PUBLIC_API_URL=http://192.168.0.10:3000
 const API_URL = process.env.EXPO_PUBLIC_API_URL || "http://10.0.2.2:3000"
 
 // funcao pra nao ficar repetindo o fetch em todo lugar

@@ -1,10 +1,7 @@
-// mostra no terminal cada requisicao que chega na api
-// ex: [14:32:10] POST /login -> 200 (85ms)
 function logRequisicoes(req, res, next) {
 
     const inicio = Date.now();
 
-    // o "finish" roda quando a resposta ja foi enviada, ai da pra pegar o status
     res.on("finish", () => {
 
         const hora = new Date().toLocaleTimeString("pt-BR");
