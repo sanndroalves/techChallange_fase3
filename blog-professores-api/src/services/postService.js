@@ -18,7 +18,7 @@ async function atualizarPost(id, dadosPost) {
         id,
         dadosPost,
         {
-            new: true,
+            returnDocument: "after",
             runValidators: true
         }
     );

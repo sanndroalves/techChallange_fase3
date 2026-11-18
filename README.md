@@ -4,6 +4,8 @@ Aplicação web desenvolvida em React para o projeto **Blog Professores**, permi
 
 O projeto foi desenvolvido como parte da pós-graduação em desenvolvimento Full Stack, utilizando uma arquitetura separada entre **frontend, backend e banco de dados**, com execução local e também através de Docker.
 
+> 📱 **Fase 4:** o app mobile em React Native está na pasta [`blog-professores-mobile`](./blog-professores-mobile). A documentação dele (setup, arquitetura, guia de uso e as mudanças na API) está no [README do mobile](./blog-professores-mobile/README.md).
+
 ---
 
 ## 📌 Objetivo do Projeto

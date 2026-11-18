@@ -57,7 +57,8 @@ async function login(req, res, next) {
             {
                 id: usuario._id,
                 nome: usuario.nome,
-                email: usuario.email
+                email: usuario.email,
+                tipo: usuario.tipo || "professor"
             },
             process.env.JWT_SECRET,
             {
@@ -70,7 +71,8 @@ async function login(req, res, next) {
             usuario: {
                 id: usuario._id,
                 nome: usuario.nome,
-                email: usuario.email
+                email: usuario.email,
+                tipo: usuario.tipo || "professor"
             }
         });
     } catch (erro) {

@@ -3,6 +3,7 @@ const express = require("express");
 const autenticar = require("../middlewares/autenticar");
 const postController = require("../controllers/postController");
 const validarPost = require("../middlewares/validarPost");
+const somenteProfessor = require("../middlewares/somenteProfessor");
 
 const router = express.Router();
  
@@ -11,6 +12,7 @@ router.get("/posts", postController.listarPosts);
 router.post(
     "/posts",
     autenticar,
+    somenteProfessor,
     validarPost,
     postController.criarPost
 );
@@ -28,6 +30,7 @@ router.get(
 router.put(
     "/posts/:id",
     autenticar,
+    somenteProfessor,
     validarPost,
     postController.atualizarPost
 );
@@ -35,10 +38,8 @@ router.put(
 router.delete(
     "/posts/:id",
     autenticar,
+    somenteProfessor,
     postController.excluirPost
 );
-
-
-
 
 module.exports = router;

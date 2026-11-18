@@ -19,6 +19,13 @@ const usuarioSchema = new mongoose.Schema(
         senha: {
             type: String,
             required: true
+        },
+
+        // professor pode criar/editar posts, aluno so visualiza
+        tipo: {
+            type: String,
+            enum: ["professor", "aluno"],
+            default: "professor"
         }
     },
     {
